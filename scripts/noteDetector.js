@@ -254,6 +254,11 @@ document.getElementById('inputToggle').addEventListener('click', function () {
     }
     onMIDISuccess(access);
     }, onMIDIFailure);
+    if (!navigator.requestMIDIAccess) {
+      logDebug('❌ Web MIDI not supported on this device');
+    } else {
+      navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
+    }
   } else {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(stream => {
@@ -361,6 +366,7 @@ function updateProgressBar() {
     const percent = (currentIndex / lessonData.length) * 100;
     progress.value = percent;
 }
+
 
 
 
