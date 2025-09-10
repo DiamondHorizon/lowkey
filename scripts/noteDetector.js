@@ -248,7 +248,7 @@ document.getElementById('inputToggle').addEventListener('click', function () {
   if (midiActive) {
     navigator.requestMIDIAccess().then(access => {
     console.log('✅ MIDI access granted');
-    logDebug(access.inputs.size);
+    logDebug(`🔍 Inputs found: ${access.inputs.size}`);
     for (let input of access.inputs.values()) {
         console.log('🎹 Found device:', input.name);
     }
@@ -361,5 +361,6 @@ function updateProgressBar() {
     const percent = (currentIndex / lessonData.length) * 100;
     progress.value = percent;
 }
+
 
 
