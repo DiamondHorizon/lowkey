@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lowkey Piano Trainer</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles/lowkey.css"/>
+
+    <!-- Link to external JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.27/build/Midi.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+  </head>
+  <body>
+    <h1>🎹 Lowkey Piano Trainer</h1>
+    <div id="settings">
+      <!-- Midi File Input -->
+      <input type="file" id="midiFile" accept=".mid"/>
+
+      <!-- Choose a pre-loaded midi -->
+      <select id="midiSelector">
+        <option value="midi/africa.mid">Africa</option>
+        <option value="midi/bohemian_rhapsody.mid">Bohemian Rhapsody</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+        <option value="midi/dark_darker_yet_darker.mid">Dark, Darker, Yet Darker</option>
+        <option value="midi/davy_jones.mid">Davy Jones</option>
+        <option value="midi/duel_of_the_fates.mid">Duel of the Fates</option>
+        <option value="midi/field_of_hopes_and_dreams.mid">Field of Hopes and Dreams</option>
+        <option value="midi/fur_elise.mid">Für Elise</option>
+        <option value="midi/hammer_of_justice.mid">Hammer of Justice</option>
+        <option value="midi/hes_a_pirate.mid">He's a Pirate</option>
+        <option value="midi/its_tv_time.mid">It's TV Time</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+        <option value="midi/checker_dance.mid">Checker Dance</option>
+      </select>
+      <button onclick="loadSelectedMidi()">Load Song</button>
+
+      <!-- Choose which hands to play -->
+      <select id="handMode">
+        <option value="right">Right Hand</option>
+        <option value="left">Left Hand</option>
+        <option value="both">Both Hands</option>
+      </select>
+
+      <!-- Toggle between Microphone and Bluetooth Midi -->
+      <p>Use MIDI Input: <label class="switch">
+        <input type="checkbox" id="inputToggle">
+        <span class="slider"></span>
+      </label></p>
+      <p>Input Mode: <span id="inputMode">🎤 Microphone</span></p>
+
+    </div>
+    <div id="instructionArea">
+      <p>Play the correct note to continue...</p>
+      <button onclick="startListening()">Start Lesson</button>
+      <div id="status">Waiting to start...</div>
+      <div id="countdown"></div>
+      <div id="noteDisplay">
+        <h3>Upcoming Notes:</h3>
+        <ul id="noteList"></ul>
+      </div>
+      <progress id="lessonProgress" value="0" max="100"></progress>
+    </div>
+
+    <!-- Load my script after everything else so it can find all elements -->
+    <script src="scripts/noteDetector.js"></script>
+  </body>
+</html>
