@@ -248,7 +248,7 @@ document.getElementById('inputToggle').addEventListener('click', function () {
   if (midiActive) {
     navigator.requestMIDIAccess().then(access => {
     console.log('✅ MIDI access granted');
-    console.log('🔍 Inputs found:', access.inputs.size);
+    logDebug('🔍 Inputs found:', access.inputs.size);
     for (let input of access.inputs.values()) {
         console.log('🎹 Found device:', input.name);
     }
@@ -268,6 +268,12 @@ document.getElementById('inputToggle').addEventListener('click', function () {
       });
   }
 });
+
+function logDebug(message) {
+  const log = document.getElementById('debugLog');
+  log.textContent += message + '\n';
+  console.log(message); // still logs to desktop console
+}
 
 // Trainer
 
@@ -355,3 +361,4 @@ function updateProgressBar() {
     const percent = (currentIndex / lessonData.length) * 100;
     progress.value = percent;
 }
+
